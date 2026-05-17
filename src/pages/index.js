@@ -16,9 +16,7 @@ const geistMono = Geist_Mono({
 export default function Home() {
   return (
     <>
-      <Typography variant="h5" style={{margin:"100px"}} className={`${styles.title} ${geistSans.variable}`}>
-       IL MIO CURRICULUM SCOLASTICO E PROFESSIONALE
-      </Typography> 
+      <h3>IL MIO CURRICULUM SCOLASTICO E PROFESSIONALE</h3>
     </>
   );
 }
