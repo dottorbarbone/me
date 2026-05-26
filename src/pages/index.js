@@ -454,7 +454,7 @@ export default function Curriculum() {
             <h3 className="tl-title">Attività lavorativa</h3>
             <p className="tl-place">Azienda Agricola</p>
             <p className="tl-desc">
-              Conoscenza del mondo vitivinicolo e vendita di vino. Gestione del magazzino e supporto alla logistica. Interazione con clienti e fornitori da tutto il mondo.
+              Conoscenza del mondo vitivinicolo e vendita di vino. Gestione del magazzino e supporto alla logistica. Interazione con clienti e fornitori da tutto il mondo. Responsabilità nell'organizzazione di feste e eventi aziendali. Sviluppo di competenze trasversali come comunicazione, problem solving e lavoro di squadra. 
             </p>
           </div>
           <div className="tl-item">
