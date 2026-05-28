@@ -510,7 +510,7 @@ export default function Curriculum() {
             
           ].map((s) => (
             <div className="skill-card" key={s.name}>
-              <div className="skill-card-icon"><img src={s.iconUrl} alt={s.name} style={{ width: '50px', height: '50px', objectFit: 'contain' }} /></div>
+              <div className="skill-card-icon"><img src={s.iconUrl} alt={s.name} style={{ width: '50px', height: '50px', objectFit: 'contain' }}/></div>
               <div className="skill-card-name">{s.name}</div>
               <div className="skill-card-level">{s.level}</div>
             </div>

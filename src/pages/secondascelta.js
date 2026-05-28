@@ -1,11 +1,13 @@
-// pages/curriculum.jsx  ─ oppure app/curriculum/page.jsx
+//pages/curriculum.jsx  ─ oppure app/curriculum/page.jsx
 // Nessuna dipendenza esterna: solo Next.js + Google Fonts via <link>
 import Panel from "../../components/panel";
+import CurriculumCard from "../../components/Card";
+import { Typography } from "@mui/material";
 export default function Curriculum2() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap');
+        @import url('https:fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap');
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -209,6 +211,31 @@ export default function Curriculum2() {
           box-shadow: var(--card-shadow-hover);
           transform: translateY(-4px);
           border-color: rgba(57,255,154,0.15);
+        }
+
+        /* ── HORIZONTAL CARD ROW ── */
+        .card-row {
+          display: flex;
+          gap: 1rem;
+          padding: 0 1rem 2rem;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scroll-snap-type: x proximity;
+          align-items: stretch;
+          justify-content: center;
+        }
+        .card-row > * {
+          flex: 1 1 calc(50% - 0.5rem);
+          max-width: 720px;
+          min-width: 280px;
+          scroll-snap-align: center;
+        }
+        .card-row::-webkit-scrollbar { height: 8px; }
+        .card-row::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 8px; }
+
+        @media (max-width: 768px) {
+          .card-row { flex-direction: column; align-items: center; }
+          .card-row > * { flex: 0 0 100%; max-width: 520px; }
         }
 
         /* ── CARD HEADER ── */
@@ -609,43 +636,37 @@ export default function Curriculum2() {
           </div>
         </div>
       </div>
-
+      
+      <Typography variant="h2" align="center" sx={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text)', mb: 4 }}>Esperienze </Typography>
+      <div className="card-row" role="list" aria-label="Curriculum cards">
+        <CurriculumCard inline title="Don Bosco" description="Specializzazione in programmazione e progettazione di siti web e gestionali.
+                  Attività di laboratorio su HTML/CSS, JavaScript, PHP e MySQL.
+                  Stage aziendale con focus su sviluppo software e supporto IT.
+                  Qualifica su linguaggi di programmazione, algoritmi, sicurezza informatica e gestione database." accent="Scolastico · Professionale 100/100" image="https://www.guidaxcasa.it/wp-content/uploads/programmatore.jpg" />
+        <CurriculumCard inline title="Stage" description="Affiancamento al team di sviluppo software.
+                  Sviluppo di un gestionale interno con PHP.
+                  Partecipazione a code review e stand-up meeting quotidiani.
+                  Formazione su metodologie agile e best practice di sviluppo.
+                  Supporto al team IT e sistemista informatico." accent="Stage Code01" image="https://www.sistemista.it/wp-content/uploads/2022/02/team-di-un-software-developer-1024x683.jpg" />
+        <CurriculumCard inline title="Attività Lavorativa" description="Affiancamento al team di sviluppo software.
+                  Sviluppo di un gestionale interno con PHP.
+                  Partecipazione a code review e stand-up meeting quotidiani.
+                  Formazione su metodologie agile e best practice di sviluppo.
+                  Supporto al team IT e sistemista informatico." accent="Vendita · Organizzazione Eventi " image="https://sandre.it/wp-content/uploads/2025/02/cantina_sandre_1-1024x684.jpg" />
+      
+      </div>
+      
       {/* ── WRAPPER ── */}
       <div className="wrapper">
 
-        {/* ── 00 DATI PERSONALI ── */}
-        <div className="card">
-          <div className="card-header">
-            <div className="card-header-left">
-              <p className="card-section-id">// 00</p>
-              <h2 className="card-title">Dati Personali</h2>
-            </div>
-            <span className="card-header-num">00</span>
-          </div>
-          <div className="personal-grid">
-            {[
-              { icon: '📍', label: 'Città', value: 'Salgareda, Italia' },
-              { icon: '🎂', label: 'Anno', value: '2007' },
-              { icon: '✉️', label: 'Email', value: 'eliabarbaric@icloud.com' },
-              { icon: '📱', label: 'Telefono', value: '3519755173' },
-            ].map((p) => (
-              <div className="personal-item" key={p.label}>
-                <div className="personal-icon">{p.icon}</div>
-                <div>
-                  <div className="personal-label">{p.label}</div>
-                  <div className="personal-value">{p.value}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         {/* ── 01 FORMAZIONE ── */}
         <div className="card">
         <div sxtyle={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
           <div className="card-header">
             <div className="card-header-left">
-              <p className="card-section-id">// 01</p>
+              <p className="card-section-id"> 01</p>
               <h2 className="card-title">Formazione</h2>
             </div>
             <span className="card-header-num">01</span>
@@ -672,7 +693,7 @@ export default function Curriculum2() {
         </div>
 
           <br />
-          <Panel title='Laboratorio' text='Laboriatorio informatica Don Bosco' radius="10px" bgimage='https://www.salesianipiemonte.info/wp-content/uploads/2017/06/34-DBosco-e-giovani-NMusio.jpg' />
+          <Panel title='Laboratorio' text='Laboriatorio informatica Don Bosco' radius="10px" bgimage='https:www.salesianipiemonte.info/wp-content/uploads/2017/06/34-DBosco-e-giovani-NMusio.jpg' />
           <br />
           <div className="timeline">
             <div className="tl-item">
@@ -699,7 +720,7 @@ export default function Curriculum2() {
         <div className="card">
           <div className="card-header">
             <div className="card-header-left">
-              <p className="card-section-id">// 02</p>
+              <p className="card-section-id"> 02</p>
               <h2 className="card-title">Esperienze</h2>
             </div>
             <span className="card-header-num">02</span>
@@ -765,7 +786,7 @@ export default function Curriculum2() {
           <div className="card" style={{ flex: 1 }}>
             <div className="card-header">
               <div className="card-header-left">
-                <p className="card-section-id">// 03</p>
+                <p className="card-section-id"> 03</p>
                 <h2 className="card-title" style={{ fontSize: '1.5rem' }}>Competenze</h2>
               </div>
               <span className="card-header-num">03</span>
@@ -792,7 +813,7 @@ export default function Curriculum2() {
           <div className="card" style={{ flex: 1 }}>
             <div className="card-header">
               <div className="card-header-left">
-                <p className="card-section-id">// 04</p>
+                <p className="card-section-id"> 04</p>
                 <h2 className="card-title" style={{ fontSize: '1.5rem' }}>Lingue</h2>
               </div>
               <span className="card-header-num">04</span>
