@@ -1,619 +1,18 @@
 //pages/curriculum.jsx  ─ oppure app/curriculum/page.jsx
 // Nessuna dipendenza esterna: solo Next.js + Google Fonts via <link>
-import Panel from "../../components/panel";
 import CurriculumCard from "../../components/Card";
-import { Typography } from "@mui/material";
+import SectionCard from "../../components/SectionCard";
+import SkillCard from "../../components/SkillCard";
+import LanguageCard from "../../components/LanguageCard";
+import FutureAeroCard from "../../components/FutureAeroCard";
+import styles from "../../components/sectionStyles.module.css";
+import pageStyles from "./secondasceltaStyles.module.css";
+import { Box, Typography } from "@mui/material";
+
 export default function Curriculum2() {
   return (
-    <>
-      <style>{`
-        @import url('https:fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap');
-
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-          --bg:        #080b10;
-          --bg2:       #0d1117;
-          --surface:   rgba(255,255,255,0.038);
-          --surface2:  rgba(255,255,255,0.065);
-          --border:    rgba(255,255,255,0.08);
-          --border2:   rgba(57,255,154,0.25);
-          --green:     #39ff9a;
-          --green2:    #00c97a;
-          --cyan:      #00d4ff;
-          --text:      #e8edf2;
-          --muted:     #6b7785;
-          --muted2:    #8b97a6;
-          --card-shadow:
-            0 0 0 1px rgba(57,255,154,0.07),
-            0 2px 4px rgba(0,0,0,0.5),
-            0 8px 24px rgba(0,0,0,0.45),
-            0 24px 48px rgba(0,0,0,0.3),
-            0 0 80px rgba(57,255,154,0.04);
-          --card-shadow-hover:
-            0 0 0 1px rgba(57,255,154,0.18),
-            0 4px 8px rgba(0,0,0,0.6),
-            0 16px 40px rgba(0,0,0,0.5),
-            0 40px 80px rgba(0,0,0,0.35),
-            0 0 120px rgba(57,255,154,0.08);
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-          background: var(--bg);
-          color: var(--text);
-          font-family: 'Syne', sans-serif;
-          font-weight: 400;
-          overflow-x: hidden;
-          min-height: 100vh;
-        }
-
-        /* ── DOT GRID BACKGROUND ── */
-        body::before {
-          content: '';
-          position: fixed;
-          inset: 0;
-          background-image:
-            radial-gradient(circle at 1px 1px, rgba(57,255,154,0.12) 1px, transparent 0);
-          background-size: 32px 32px;
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        /* ── AMBIENT GLOW ── */
-        body::after {
-          content: '';
-          position: fixed;
-          top: -20%;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 800px;
-          height: 600px;
-          background: radial-gradient(ellipse at center,
-            rgba(57,255,154,0.06) 0%,
-            rgba(0,212,255,0.03) 40%,
-            transparent 70%);
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        /* ── UTILITY ── */
-        .relative { position: relative; z-index: 1; }
-
-        /* ── HERO ── */
-        .hero {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          z-index: 1;
-          padding: 5rem 2rem 8rem;
-          text-align: center;
-        }
-
-        .hero-tag {
-          display: inline-flex;
-          align-items: center;
-          gap: .5rem;
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .72rem;
-          letter-spacing: .08em;
-          color: var(--green);
-          background: rgba(57,255,154,0.08);
-          border: 1px solid rgba(57,255,154,0.2);
-          padding: .35rem 1rem;
-          border-radius: 100px;
-          margin-bottom: 2.5rem;
-          animation: fadeUp .6s ease both;
-        }
-        .hero-tag::before {
-          content: '';
-          width: 6px; height: 6px;
-          border-radius: 50%;
-          background: var(--green);
-          box-shadow: 0 0 8px var(--green);
-          animation: pulse 2s ease-in-out infinite;
-        }
-
-        .hero-name {
-          font-family: 'Syne', sans-serif;
-          font-weight: 800;
-          font-size: clamp(3rem, 9vw, 7.5rem);
-          line-height: .95;
-          letter-spacing: -.04em;
-          color: var(--text);
-          animation: fadeUp .6s .1s ease both;
-          opacity: 0;
-        }
-        .hero-name .accent {
-          display: block;
-          color: transparent;
-          -webkit-text-stroke: 1px rgba(57,255,154,0.5);
-          font-style: italic;
-          font-family: 'Instrument Serif', serif;
-          font-size: clamp(2rem, 7vw, 6rem);
-          font-weight: 400;
-          letter-spacing: -.02em;
-          margin-top: .15em;
-        }
-
-        .hero-meta {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1.5rem;
-          margin-top: 2.2rem;
-          animation: fadeUp .6s .25s ease both;
-          opacity: 0;
-        }
-        .hero-meta-item {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .75rem;
-          color: var(--muted2);
-          letter-spacing: .04em;
-        }
-        .hero-meta-sep {
-          width: 3px; height: 3px;
-          border-radius: 50%;
-          background: var(--muted);
-        }
-
-        .hero-cta {
-          margin-top: 3.5rem;
-          animation: fadeUp .6s .4s ease both;
-          opacity: 0;
-        }
-        .hero-cta-inner {
-          display: inline-flex;
-          align-items: center;
-          gap: .6rem;
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .75rem;
-          color: var(--muted);
-          letter-spacing: .12em;
-          text-transform: uppercase;
-          flex-direction: column;
-        }
-        .hero-cta-line {
-          width: 1px;
-          height: 60px;
-          background: linear-gradient(to bottom, var(--green), transparent);
-          animation: slideDown 2s 1s ease-in-out infinite;
-        }
-
-        /* ── LAYOUT ── */
-        .wrapper {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 2rem 10rem;
-          position: relative;
-          z-index: 1;
-          display: flex;
-          flex-direction: column;
-          gap: 5rem;
-        }
-
-        /* ── FLOATING CARD ── */
-        .card {
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: 20px;
-          padding: 2.5rem;
-          box-shadow: var(--card-shadow);
-          transition: box-shadow .4s ease, transform .4s ease, border-color .4s ease;
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-        }
-        .card:hover {
-          box-shadow: var(--card-shadow-hover);
-          transform: translateY(-4px);
-          border-color: rgba(57,255,154,0.15);
-        }
-
-        /* ── HORIZONTAL CARD ROW ── */
-        .card-row {
-          display: flex;
-          gap: 1rem;
-          padding: 0 1rem 2rem;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-          scroll-snap-type: x proximity;
-          align-items: stretch;
-          justify-content: center;
-        }
-        .card-row > * {
-          flex: 1 1 calc(50% - 0.5rem);
-          max-width: 720px;
-          min-width: 280px;
-          scroll-snap-align: center;
-        }
-        .card-row::-webkit-scrollbar { height: 8px; }
-        .card-row::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 8px; }
-
-        @media (max-width: 768px) {
-          .card-row { flex-direction: column; align-items: center; }
-          .card-row > * { flex: 0 0 100%; max-width: 520px; }
-        }
-
-        /* ── CARD HEADER ── */
-        .card-header {
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          margin-bottom: 2rem;
-          padding-bottom: 1.5rem;
-          border-bottom: 1px solid var(--border);
-        }
-        .card-header-left {}
-        .card-section-id {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .68rem;
-          color: var(--green);
-          letter-spacing: .12em;
-          text-transform: uppercase;
-          margin-bottom: .5rem;
-        }
-        .card-title {
-          font-size: clamp(1.5rem, 3vw, 2.2rem);
-          font-weight: 700;
-          color: var(--text);
-          letter-spacing: -.02em;
-        }
-        .card-header-num {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: 4rem;
-          font-weight: 300;
-          color: rgba(255,255,255,0.05);
-          line-height: 1;
-          user-select: none;
-        }
-
-        /* ── TIMELINE ── */
-        .timeline {
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-        }
-
-        .tl-item {
-          display: grid;
-          grid-template-columns: 120px 1fr;
-          gap: 0 2rem;
-          position: relative;
-          padding-bottom: 2.5rem;
-        }
-        .tl-item:last-child { padding-bottom: 0; }
-
-        .tl-left {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          padding-top: .3rem;
-          position: relative;
-        }
-        .tl-year {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .68rem;
-          color: var(--green);
-          letter-spacing: .08em;
-          text-align: right;
-          line-height: 1.4;
-        }
-        .tl-left::after {
-          content: '';
-          position: absolute;
-          right: -2rem;
-          top: 0;
-          bottom: 0;
-          width: 1px;
-          background: linear-gradient(to bottom, var(--border2) 0%, var(--border) 100%);
-        }
-        .tl-item:last-child .tl-left::after {
-          background: linear-gradient(to bottom, var(--border2) 0%, transparent 100%);
-        }
-
-        .tl-dot-wrap {
-          position: absolute;
-          right: calc(-2rem - 5px);
-          top: 4px;
-          width: 11px; height: 11px;
-          z-index: 2;
-        }
-        .tl-dot {
-          width: 11px; height: 11px;
-          border-radius: 50%;
-          background: var(--bg2);
-          border: 2px solid var(--green);
-          box-shadow: 0 0 10px rgba(57,255,154,0.5), 0 0 20px rgba(57,255,154,0.2);
-        }
-
-        .tl-right {
-          padding-top: .15rem;
-          padding-left: 1rem;
-        }
-        .tl-title {
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: var(--text);
-          margin-bottom: .3rem;
-          letter-spacing: -.01em;
-        }
-        .tl-place {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .72rem;
-          color: var(--cyan);
-          letter-spacing: .06em;
-          margin-bottom: .7rem;
-        }
-        .tl-desc {
-          font-size: .88rem;
-          line-height: 1.75;
-          color: var(--muted2);
-          max-width: 580px;
-        }
-        .tl-badge {
-          display: inline-block;
-          margin-top: .8rem;
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .65rem;
-          color: var(--green);
-          background: rgba(57,255,154,0.08);
-          border: 1px solid rgba(57,255,154,0.2);
-          padding: .25rem .6rem;
-          border-radius: 4px;
-          letter-spacing: .06em;
-        }
-
-        /* ── TWO COL GRID ── */
-        .two-col {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 2rem;
-        }
-
-        /* ── SKILLS ── */
-        .skills-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1rem;
-        }
-
-        .skill-item {
-          background: var(--surface2);
-          border: 1px solid var(--border);
-          border-radius: 12px;
-          padding: 1.4rem 1.2rem;
-          display: flex;
-          flex-direction: column;
-          gap: .5rem;
-          transition: border-color .3s, background .3s, transform .25s;
-          position: relative;
-          overflow: hidden;
-        }
-        .skill-item::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(135deg, rgba(57,255,154,0.05), transparent 60%);
-          opacity: 0;
-          transition: opacity .3s;
-        }
-        .skill-item:hover {
-          border-color: rgba(57,255,154,0.25);
-          background: rgba(255,255,255,0.06);
-          transform: translateY(-2px);
-        }
-        .skill-item:hover::before { opacity: 1; }
-
-        .skill-icon {
-          font-size: 1.5rem;
-          margin-bottom: .2rem;
-          filter: saturate(.8);
-        }
-        .skill-name {
-          font-size: .9rem;
-          font-weight: 600;
-          color: var(--text);
-          letter-spacing: -.01em;
-        }
-        .skill-level {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .62rem;
-          letter-spacing: .12em;
-          text-transform: uppercase;
-        }
-        .skill-level.adv  { color: var(--green); }
-        .skill-level.mid  { color: var(--cyan); }
-
-        /* ── LANGUAGE BARS ── */
-        .lang-list {
-          display: flex;
-          flex-direction: column;
-          gap: 1.6rem;
-        }
-        .lang-row {}
-        .lang-meta {
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-          margin-bottom: .55rem;
-        }
-        .lang-name {
-          font-size: .9rem;
-          font-weight: 600;
-          color: var(--text);
-        }
-        .lang-code {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .65rem;
-          color: var(--green);
-          letter-spacing: .1em;
-          background: rgba(57,255,154,0.08);
-          border: 1px solid rgba(57,255,154,0.15);
-          padding: .2rem .5rem;
-          border-radius: 4px;
-        }
-        .lang-track {
-          height: 2px;
-          background: rgba(255,255,255,0.07);
-          border-radius: 2px;
-          overflow: hidden;
-          position: relative;
-        }
-        .lang-fill {
-          height: 100%;
-          border-radius: 2px;
-          background: linear-gradient(to right, var(--green2), var(--green));
-          position: relative;
-          animation: growBar 1.4s cubic-bezier(.16,1,.3,1) forwards;
-          animation-play-state: running;
-        }
-        .lang-fill.secondary {
-          background: linear-gradient(to right, #0099cc, var(--cyan));
-        }
-        .lang-fill.tertiary {
-          background: linear-gradient(to right, #0066aa, #0099cc);
-        }
-
-        /* ── PERSONAL CARD ── */
-        .personal-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: .75rem;
-        }
-        .personal-item {
-          display: flex;
-          align-items: center;
-          gap: .8rem;
-          background: var(--surface2);
-          border: 1px solid var(--border);
-          border-radius: 10px;
-          padding: .9rem 1.1rem;
-        }
-        .personal-icon {
-          width: 32px; height: 32px;
-          border-radius: 8px;
-          background: rgba(57,255,154,0.1);
-          border: 1px solid rgba(57,255,154,0.2);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1rem;
-          flex-shrink: 0;
-        }
-        .personal-label {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .6rem;
-          color: var(--muted);
-          letter-spacing: .1em;
-          text-transform: uppercase;
-          margin-bottom: .2rem;
-        }
-        .personal-value {
-          font-size: .85rem;
-          font-weight: 500;
-          color: var(--text);
-        }
-
-        /* ── QUOTE ── */
-        .quote-card {
-          background: linear-gradient(135deg, rgba(57,255,154,0.06), rgba(0,212,255,0.04), rgba(255,255,255,0.02));
-          border: 1px solid rgba(57,255,154,0.12);
-          border-radius: 20px;
-          padding: 3rem 2.5rem;
-          text-align: center;
-          box-shadow:
-            0 0 0 1px rgba(57,255,154,0.05),
-            0 8px 32px rgba(0,0,0,0.4),
-            0 0 80px rgba(57,255,154,0.04);
-          position: relative;
-          overflow: hidden;
-        }
-        .quote-card::before {
-          content: '"';
-          position: absolute;
-          top: -1.5rem;
-          left: 50%;
-          transform: translateX(-50%);
-          font-family: 'Instrument Serif', serif;
-          font-size: 12rem;
-          color: rgba(57,255,154,0.04);
-          line-height: 1;
-          user-select: none;
-          pointer-events: none;
-        }
-        .quote-text {
-          font-family: 'Instrument Serif', serif;
-          font-style: italic;
-          font-size: clamp(1.3rem, 3vw, 2rem);
-          line-height: 1.5;
-          color: var(--text);
-          position: relative;
-          z-index: 1;
-        }
-        .quote-author {
-          margin-top: 1.2rem;
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .65rem;
-          color: var(--green);
-          letter-spacing: .25em;
-          text-transform: uppercase;
-        }
-
-        /* ── FOOTER ── */
-        footer {
-          text-align: center;
-          padding: 2rem;
-          border-top: 1px solid var(--border);
-          font-family: 'JetBrains Mono', monospace;
-          font-size: .65rem;
-          letter-spacing: .15em;
-          text-transform: uppercase;
-          color: var(--muted);
-          position: relative;
-          z-index: 1;
-        }
-
-        /* ── KEYFRAMES ── */
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideDown {
-          0%, 100% { opacity: 0; transform: translateY(-10px); }
-          50%      { opacity: 1; transform: translateY(10px); }
-        }
-        @keyframes pulse {
-          0%, 100% { box-shadow: 0 0 8px var(--green); }
-          50%      { box-shadow: 0 0 16px var(--green), 0 0 32px rgba(57,255,154,0.4); }
-        }
-        @keyframes growBar {
-          from { width: 0; }
-          to   { width: 100%; }
-        }
-
-        /* ── RESPONSIVE ── */
-        @media (max-width: 768px) {
-          .two-col { grid-template-columns: 1fr; }
-          .skills-grid { grid-template-columns: repeat(2, 1fr); }
-          .personal-grid { grid-template-columns: 1fr; }
-          .tl-item { grid-template-columns: 80px 1fr; gap: 0 1rem; }
-          .tl-left::after { right: -1rem; }
-          .tl-dot-wrap { right: calc(-1rem - 5px); }
-          .tl-right { padding-left: .5rem; }
-        }
-        @media (max-width: 480px) {
-          .skills-grid { grid-template-columns: 1fr 1fr; }
-          .tl-item { grid-template-columns: 1fr; }
-          .tl-left { align-items: flex-start; margin-bottom: .5rem; }
-          .tl-left::after { display: none; }
-          .tl-dot-wrap { display: none; }
-          .tl-right { padding-left: 0; }
-        }
-      `}</style>
+    <div className={pageStyles.page}>
+      
 
       {/* ── HERO ── */}
       <div className="hero">
@@ -648,195 +47,84 @@ export default function Curriculum2() {
                   Partecipazione a code review e stand-up meeting quotidiani.
                   Formazione su metodologie agile e best practice di sviluppo.
                   Supporto al team IT e sistemista informatico." accent="Stage Code01" image="https://www.sistemista.it/wp-content/uploads/2022/02/team-di-un-software-developer-1024x683.jpg" />
-        <CurriculumCard inline title="Attività Lavorativa" description="Affiancamento al team di sviluppo software.
-                  Sviluppo di un gestionale interno con PHP.
-                  Partecipazione a code review e stand-up meeting quotidiani.
-                  Formazione su metodologie agile e best practice di sviluppo.
-                  Supporto al team IT e sistemista informatico." accent="Vendita · Organizzazione Eventi " image="https://sandre.it/wp-content/uploads/2025/02/cantina_sandre_1-1024x684.jpg" />
+        <CurriculumCard inline title="Attività Lavorativa" description="                  Conoscenza del mondo vitivinicolo e vendita di vino.
+                  Gestione del magazzino e supporto alla logistica.
+                  Interazione con clienti e fornitori da tutto il mondo." accent="Sviluppo Commerciale · Supporto Organizzazione Eventi · Supporto Trasversale " image="https://sandre.it/wp-content/uploads/2025/02/cantina_sandre_1-1024x684.jpg" />
       
       </div>
-      
+
       {/* ── WRAPPER ── */}
       <div className="wrapper">
 
 
 
         {/* ── 01 FORMAZIONE ── */}
-        <div className="card">
-        <div sxtyle={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-          <div className="card-header">
-            <div className="card-header-left">
-              <p className="card-section-id"> 01</p>
-              <h2 className="card-title">Formazione</h2>
-            </div>
-            <span className="card-header-num">01</span>
-          </div>
-          <div className="timeline">
-            <div className="tl-item">
-              <div className="tl-left">
-                <span className="tl-year">2021<br/>2024</span>
-                <div className="tl-dot-wrap"><div className="tl-dot" /></div>
-              </div>
-              <div className="tl-right">
-                <div className="tl-title">Diploma professionale in informatica</div>
-                <div className="tl-place">Don Bosco</div>
-                <div className="tl-desc">
-                  Specializzazione in programmazione e progettazione di siti web e gestionali.
-                  Attività di laboratorio su HTML/CSS, JavaScript, PHP e MySQL.
-                  Stage aziendale con focus su sviluppo software e supporto IT.
-                  Qualifica su linguaggi di programmazione, algoritmi, sicurezza informatica e gestione database.
-                </div>
-                <span className="tl-badge">✦ Votazione finale: 100 / 100</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SectionCard id="01" accent="Formazione" title="Diploma professionale in informatica">
+          <Typography variant="subtitle1" sx={{ mb: 2, color: 'var(--cyan)', fontWeight: 500 }}>
+            Don Bosco · 2021–2024
+          </Typography>
+          <Typography sx={{ color: 'rgba(245,240,232,0.85)', lineHeight: 1.8, mb: 2 }}>
+            Studio tecnico-pratico in sviluppo software, progettazione web e gestione dati con un approccio hands-on.
+          </Typography>
+          <Box component="ul" sx={{ pl: 3, mt: 2, color: 'rgba(245,240,232,0.75)', lineHeight: 1.8 }}>
+            <li>Laboratori su HTML/CSS, JavaScript, PHP e MySQL.</li>
+            <li>Progettazione e realizzazione di siti web e sistemi gestionali.</li>
+            <li>Stage aziendale con sviluppo software e supporto IT.</li>
+            <li>Competenze su algoritmi, sicurezza informatica e database.</li>
+          </Box>
+        </SectionCard>
 
-          <br />
-          <Panel title='Laboratorio' text='Laboriatorio informatica Don Bosco' radius="10px" bgimage='https:www.salesianipiemonte.info/wp-content/uploads/2017/06/34-DBosco-e-giovani-NMusio.jpg' />
-          <br />
-          <div className="timeline">
-            <div className="tl-item">
-              <div className="tl-left">
-                <span className="tl-year">2021<br/>2024</span>
-                <div className="tl-dot-wrap"><div className="tl-dot" /></div>
-              </div>
-              <div className="tl-right">
-                <div className="tl-title">Diploma professionale in informatica</div>
-                <div className="tl-place">Don Bosco</div>
-                <div className="tl-desc">
-                  Specializzazione in programmazione e progettazione di siti web e gestionali.
-                  Attività di laboratorio su HTML/CSS, JavaScript, PHP e MySQL.
-                  Stage aziendale con focus su sviluppo software e supporto IT.
-                  Qualifica su linguaggi di programmazione, algoritmi, sicurezza informatica e gestione database.
-                </div>
-                <span className="tl-badge">✦ Votazione finale: 100 / 100</span>
-              </div>
-            </div>
+        {/* ── 03 COMPETENZE ── */}
+        <SectionCard id="03" accent="Competenze" title="Competenze">
+          <div className={styles.skillsGrid}>
+            {[
+              { iconUrl: 'https://images.ctfassets.net/23aumh6u8s0i/6pjUKboBuFLvCKkE3esaFA/5f2101d6d2add5c615db5e98a553fc44/nextjs.jpeg', name: 'Programmazione Software', level: 'Avanzato', levelClass: 'adv' },
+              { iconUrl: 'https://firebase.google.com/static/images/social.png?hl=it', name: 'Programmazione Database', level: 'Avanzato', levelClass: 'adv' },
+              { iconUrl: 'data:image/jpeg;base64,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', name: 'Programmazione di Gestionali', level: 'Avanzato', levelClass: 'adv' },
+              { iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Visual_Studio_Icon_2022.svg/1280px-Visual_Studio_Icon_2022.svg.png', name: 'Programmazione applicazioni Windows', level: 'Base', levelClass: '' },
+              { iconUrl: 'https://www.accuratereviews.com/wp-content/uploads/2024/11/Figma.jpg', name: 'Progettazione Grafica con software Figma', level: 'Avanzato', levelClass: 'adv' },
+              { iconUrl: 'https://images.seeklogo.com/logo-png/49/2/omron-logo-png_seeklogo-493631.png', name: 'Realizzazione di programmi con linguaggio ladder e HMI', level: 'Avanzato', levelClass: 'adv' },
+              { iconUrl: 'https://www.unionegeometri.com/wp-content/uploads/2022/11/mettere-in-sicurezza-un-impianto-elettrico.png', name: 'Capacità manuale di realizzare impianti elettrici', level: 'Avanzato', levelClass: 'adv' },
+              { iconUrl: 'https://www.pcassemblati.eu/52110-home_default/pc-gaming-intel-i5-14600k-ssd-500-ram-16gb-rtx-5060-8gb.jpg', name: 'Montaggio e Smontaggio di componenti elettrici/computer', level: 'Avanzato', levelClass: 'adv' },
+              { iconUrl: 'https://www.mylanding.it/wp-content/uploads/2025/10/differenza-tecnico-informatico-consulente.jpg', name: 'Progettazione e assemblaggio di Computer', level: 'Avanzato', levelClass: 'adv' },
+              { iconUrl: 'https://cd-keys.online/281-large_default/microsoft-word-2024.jpg', name: 'Capacità di formulare rapportini a lavoro finito', level: 'Intermedio', levelClass: 'mid' },
+              { iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025%E2%80%93present%29.svg/1280px-Microsoft_Office_Excel_%282025%E2%80%93present%29.svg.png', name: 'Capacità di formulare tabelle di calcolo', level: 'Intermedio', levelClass: 'mid' },
+              { iconUrl: 'https://cdn-icons-png.flaticon.com/512/6754/6754689.png', name: 'Capacità di creare grafici per la stesura di un piano nel tempo', level: 'Intermedio', levelClass: 'mid' },
+            ].map((skill) => (
+              <SkillCard
+                key={skill.name}
+                iconUrl={skill.iconUrl}
+                name={skill.name}
+                level={skill.level}
+                levelClass={skill.levelClass}
+              />
+            ))}
           </div>
-        </div>
+        </SectionCard>
 
-        {/* ── 02 ESPERIENZE ── */}
-        <div className="card">
-          <div className="card-header">
-            <div className="card-header-left">
-              <p className="card-section-id"> 02</p>
-              <h2 className="card-title">Esperienze</h2>
-            </div>
-            <span className="card-header-num">02</span>
+        <FutureAeroCard
+          imageUrl="https://uk.leonardo.com/o/adaptive-media/image/28913194/h_703/eurofighter-typhoon-in-hangar_960640.jpg"
+          title="Futuro percorso in manutenzione aeronautica"
+          description="Sviluppo di competenze in sistemi avionici, controllo qualità e supporto operativo per velivoli civili."
+        />
+
+        {/* ── 04 LINGUE ── */}
+        <SectionCard id="04" accent="Lingue" title="Lingue">
+          <div className={styles.langList}>
+            {[
+              { name: 'Italiano', code: '', width: '100%', variant: '' },
+              { name: 'Inglese', code: 'B2', width: '55%', variant: 'secondary' },
+            ].map((lang) => (
+              <LanguageCard
+                key={lang.name}
+                name={lang.name}
+                code={lang.code}
+                width={lang.width}
+                variant={lang.variant}
+              />
+            ))}
           </div>
-          <div className="timeline">
-            <div className="tl-item">
-              <div className="tl-left">
-                <span className="tl-year">2021<br/>oggi</span>
-                <div className="tl-dot-wrap"><div className="tl-dot" /></div>
-              </div>
-              <div className="tl-right">
-                <div className="tl-title">Attività lavorativa</div>
-                <div className="tl-place">Azienda Agricola</div>
-                <div className="tl-desc">
-                  Conoscenza del mondo vitivinicolo e vendita di vino.
-                  Gestione del magazzino e supporto alla logistica.
-                  Interazione con clienti e fornitori da tutto il mondo.
-                </div>
-              </div>
-            </div>
-            <div className="tl-item">
-              <div className="tl-left">
-                <span className="tl-year">2023<br/>2024</span>
-                <div className="tl-dot-wrap"><div className="tl-dot" /></div>
-              </div>
-              <div className="tl-right">
-                <div className="tl-title">Stage</div>
-                <div className="tl-place">Code01 — Salgareda (TV)</div>
-                <div className="tl-desc">
-                  Affiancamento al team di sviluppo software.
-                  Sviluppo di un gestionale interno con PHP.
-                  Partecipazione a code review e stand-up meeting quotidiani.
-                  Formazione su metodologie agile e best practice di sviluppo.
-                  Supporto al team IT e sistemista informatico.
-                </div>
-                <span className="tl-badge">⬡ IT · PHP · Code Review</span>
-              </div>
-            </div>
-            <div className="tl-item">
-              <div className="tl-left">
-                <span className="tl-year">2022</span>
-                <div className="tl-dot-wrap"><div className="tl-dot" /></div>
-              </div>
-              <div className="tl-right">
-                <div className="tl-title">Viaggio Studio</div>
-                <div className="tl-place">Londra</div>
-                <div className="tl-desc">
-                  Apprendimento della lingua inglese in immersione totale.
-                  Conoscenza di cultura e storia inglese.
-                  Esperienza di vita indipendente e gestione del budget personale.
-                  Interazione con persone di diverse nazionalità e background culturali.
-                </div>
-                <span className="tl-badge">🌍 Esperienza internazionale</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ── 03 + 04 COMPETENZE & LINGUE ── */}
-        <div className="two-col">
-
-          {/* COMPETENZE */}
-          <div className="card" style={{ flex: 1 }}>
-            <div className="card-header">
-              <div className="card-header-left">
-                <p className="card-section-id"> 03</p>
-                <h2 className="card-title" style={{ fontSize: '1.5rem' }}>Competenze</h2>
-              </div>
-              <span className="card-header-num">03</span>
-            </div>
-            <div className="skills-grid">
-              {[
-                { icon: '⚛️', name: 'React / Next.js', level: 'Avanzato', cls: 'adv' },
-                { icon: '🟦', name: 'TypeScript',      level: 'Avanzato', cls: 'adv' },
-                { icon: '🐍', name: 'Python',          level: 'Intermedio', cls: 'mid' },
-                { icon: '☁️', name: 'AWS / Cloud',     level: 'Intermedio', cls: 'mid' },
-                { icon: '🐳', name: 'Docker / K8s',    level: 'Intermedio', cls: 'mid' },
-                { icon: '🗄️', name: 'PostgreSQL',      level: 'Avanzato', cls: 'adv' },
-              ].map((s) => (
-                <div className="skill-item" key={s.name}>
-                  <div className="skill-icon">{s.icon}</div>
-                  <div className="skill-name">{s.name}</div>
-                  <div className={`skill-level ${s.cls}`}>{s.level}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* LINGUE */}
-          <div className="card" style={{ flex: 1 }}>
-            <div className="card-header">
-              <div className="card-header-left">
-                <p className="card-section-id"> 04</p>
-                <h2 className="card-title" style={{ fontSize: '1.5rem' }}>Lingue</h2>
-              </div>
-              <span className="card-header-num">04</span>
-            </div>
-            <div className="lang-list">
-              {[
-                { name: 'Italiano', code: 'Madrelingua', pct: '100%', cls: '' },
-                { name: 'Inglese',  code: 'B2', pct: '85%',  cls: 'secondary' },
-              ].map((l) => (
-                <div className="lang-row" key={l.name}>
-                  <div className="lang-meta">
-                    <span className="lang-name">{l.name}</span>
-                    <span className="lang-code">{l.code}</span>
-                  </div>
-                  <div className="lang-track">
-                    <div className={`lang-fill ${l.cls}`} style={{ width: l.pct }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
+        </SectionCard>
 
         {/* ── QUOTE ── */}
         <div className="quote-card">
@@ -853,6 +141,6 @@ export default function Curriculum2() {
       <footer>
         Curriculum Vitae · Aggiornato 2026 · Samgareda, Italia
       </footer>
-    </>
+    </div>
   );
 }

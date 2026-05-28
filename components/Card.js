@@ -9,11 +9,13 @@ import Typography from '@mui/material/Typography';
 export default function CurriculumCard({ image, title, description, accent, inline = false }) {
   const wrapperSx = inline
     ? {
-        display: 'inline-flex',
+        display: 'flex',
+        flex: '1 1 320px',
+        minWidth: '280px',
+        maxWidth: '420px',
+        width: '100%',
         px: 1,
         py: 1,
-        width: 'auto',
-        flex: '0 0 auto',
       }
     : {
         width: '100%',
