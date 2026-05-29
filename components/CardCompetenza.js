@@ -1,5 +1,3 @@
-// File: CardCompetenza.js
-
 export default function CardComp({
   titolo = "Titolo competenza",
   descrizione = "Descrizione breve della competenza",
@@ -9,9 +7,9 @@ export default function CardComp({
   return (
     <div className="flex flex-col items-center p-6 rounded-xl shadow-lg bg-[#0f0f0f] border border-[#1f1f1f] hover:border-[#3b82f6] transition-all duration-300 w-64">
       
-      {/* Immagine */}
-      <div className="w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-[#111] border border-[#333] overflow-hidden">
-        <img src={img} alt={titolo} className="w-10 h-10 object-contain" />
+      {/* Immagine più piccola */}
+      <div className="w-12 h-12 mb-4 flex items-center justify-center rounded-full bg-[#111] border border-[#333] overflow-hidden">
+        <img src={img} alt={titolo} className="w-7 h-7 object-contain" />
       </div>
 
       {/* Titolo */}
