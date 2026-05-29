@@ -75,21 +75,45 @@ export default function Curriculum2() {
             <li>Competenze su algoritmi, sicurezza informatica e database.</li>
           </Box>
         </SectionCard>
+<SectionCard id="03" accent="Competenze" title="Competenze">
+
+  {/* --- LE TUE CARDCOMP --- */}
+  <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", marginBottom: "30px" }}>
+    <CardComp
+      titolo="Next.js"
+      descrizione="Framework React per applicazioni moderne"
+      livello="AVANZATO"
+      img="/nextjs-icon.png"
+    />
+
+    <CardComp
+      titolo="React"
+      descrizione="Libreria per UI dinamiche"
+      livello="INTERMEDIO"
+      img="/react-icon.png"
+    />
+  </div>
+
+  {/* --- GRIGLIA DELLE ALTRE COMPETENZE --- */}
+  <div className={styles.skillsGrid}>
+    {[
+      // ...tutte le tue skill card
+    ].map((skill) => (
+      <SkillCard
+        key={skill.name}
+        iconUrl={skill.iconUrl}
+        name={skill.name}
+        level={skill.level}
+        levelClass={skill.levelClass}
+      />
+    ))}
+  </div>
+
+</SectionCard>
 
         {/* ── 03 COMPETENZE ── */}
         <SectionCard id="03" accent="Competenze" title="Competenze">
-                <CardComp
-        titolo="Next.js"
-        descrizione="Framework React per applicazioni moderne"
-        livello="AVANZATO"
-        img="/nextjs-icon.png"
-      />
-                <CardComp
-        titolo="Next.js"
-        descrizione="Framework React per applicazioni moderne"
-        livello="AVANZATO"
-        img="/nextjs-icon.png"
-      />
+
           <div className={styles.skillsGrid}>
             {[
               { iconUrl: 'https://images.ctfassets.net/23aumh6u8s0i/6pjUKboBuFLvCKkE3esaFA/5f2101d6d2add5c615db5e98a553fc44/nextjs.jpeg', name: 'Programmazione Software', level: 'Avanzato', levelClass: 'adv' },
