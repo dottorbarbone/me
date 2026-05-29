@@ -8,7 +8,7 @@ import FutureAeroCard from "../../components/FutureAeroCard";
 import styles from "../../components/sectionStyles.module.css";
 import pageStyles from "./secondasceltaStyles.module.css";
 import { Box, Typography } from "@mui/material";
-import CardComp from "@/components/CardCompetenza";
+import CardComp from "../../components/CardCompetenza";
 
 
 export default function Curriculum2() {
