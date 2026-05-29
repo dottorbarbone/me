@@ -1,27 +1,30 @@
-export default function FutureProCard({
+export default function FutureAeroCard({
   titolo = "Futuro Professionale",
   descrizione = "Percorso nella manutenzione aeronautica militare",
-  img = "/aeronautica.jpg",
+  img = "https://i2.res.24o.it/images2010/S24/Documenti/2025/11/06/Immagini/Ritagli/caccia%20uno-U32600288628hKu-1440x752@IlSole24Ore-Web.JPG",
+  link = "https://www.aeronautica.difesa.it", // link cliccabile
 }) {
   return (
-    <div className="rounded-xl overflow-hidden shadow-lg bg-[#0f0f0f] border border-[#1f1f1f] hover:border-[#3b82f6] transition-all duration-300 w-full max-w-xl mx-auto">
-      
-      {/* Immagine grande */}
-      <div className="w-full h-56 overflow-hidden">
-        <img
-          src={img}
-          alt={titolo}
-          className="w-full h-full object-cover"
-        />
-      </div>
+    <div className="w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl bg-[#0f0f0f] border border-[#1f1f1f] hover:border-[#3b82f6] transition-all duration-300">
+
+      {/* Immagine cliccabile */}
+      <a href={link} target="_blank" rel="noopener noreferrer">
+        <div className="w-full h-72 md:h-96 overflow-hidden">
+          <img
+            src={img}
+            alt={titolo}
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+      </a>
 
       {/* Contenuto */}
-      <div className="p-6">
-        <h2 className="text-white text-2xl font-bold mb-2">
+      <div className="p-8">
+        <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">
           {titolo}
-        </h2>
+        </h1>
 
-        <p className="text-gray-300 leading-relaxed">
+        <p className="text-gray-300 text-lg leading-relaxed">
           {descrizione}
         </p>
       </div>
