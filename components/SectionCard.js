@@ -25,7 +25,7 @@ export default function SectionCard({ id, accent, title, children, sx }) {
                 {accent}
               </Typography>
             )}
-          <Typography variant="h2" align="center" sx={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text)', mb: 4 }}>Esperienze </Typography>
+          <Typography variant="h2" align="center" sx={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text)', mb: 4 }}>
               {title}
             </Typography>
           </Box>
