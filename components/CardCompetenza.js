@@ -9,7 +9,7 @@ export default function CardComp({
       
       {/* Immagine più piccola */}
       <div className="w-12 h-12 mb-4 flex items-center justify-center rounded-full bg-[#111] border border-[#333] overflow-hidden">
-        <img src={img} alt={titolo} className="w-7 h-7 object-contain" />
+        <img src={img} alt={titolo} className="w-7 h-7 object-contain" sx={{height:"250px", width:"250px"}} />
       </div>
 
       {/* Titolo */}
