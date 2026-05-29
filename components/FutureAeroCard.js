@@ -1,8 +1,8 @@
 export default function FutureAeroCard({
   titolo = "Futuro Professionale",
   descrizione = "Percorso nella manutenzione aeronautica militare",
-  img = "https://i2.res.24o.it/images2010/S24/Documenti/2025/11/06/Immagini/Ritagli/caccia%20uno-U32600288628hKu-1440x752@IlSole24Ore-Web.JPG",
-  link = "https://www.aeronautica.difesa.it", // link cliccabile
+  img = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Eurofighter_Typhoon_-_RIAT_2016_%2828417097280%29.jpg/1280px-Eurofighter_Typhoon_-_RIAT_2016_%2828417097280%29.jpg",
+  link = "https://www.aeronautica.difesa.it",
 }) {
   return (
     <div className="w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl bg-[#0f0f0f] border border-[#1f1f1f] hover:border-[#3b82f6] transition-all duration-300">
