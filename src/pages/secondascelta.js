@@ -8,6 +8,8 @@ import FutureAeroCard from "../../components/FutureAeroCard";
 import styles from "../../components/sectionStyles.module.css";
 import pageStyles from "./secondasceltaStyles.module.css";
 import { Box, Typography } from "@mui/material";
+import CardComp from "@/components/CardCompetenza";
+
 
 export default function Curriculum2() {
   return (
@@ -76,6 +78,18 @@ export default function Curriculum2() {
 
         {/* ── 03 COMPETENZE ── */}
         <SectionCard id="03" accent="Competenze" title="Competenze">
+                <CardComp
+        titolo="Next.js"
+        descrizione="Framework React per applicazioni moderne"
+        livello="AVANZATO"
+        img="/nextjs-icon.png"
+      />
+                <CardComp
+        titolo="Next.js"
+        descrizione="Framework React per applicazioni moderne"
+        livello="AVANZATO"
+        img="/nextjs-icon.png"
+      />
           <div className={styles.skillsGrid}>
             {[
               { iconUrl: 'https://images.ctfassets.net/23aumh6u8s0i/6pjUKboBuFLvCKkE3esaFA/5f2101d6d2add5c615db5e98a553fc44/nextjs.jpeg', name: 'Programmazione Software', level: 'Avanzato', levelClass: 'adv' },
