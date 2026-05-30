@@ -57,8 +57,8 @@
   margin: 0 auto;
 }
 .responsive-img {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
     display: block;
 }
