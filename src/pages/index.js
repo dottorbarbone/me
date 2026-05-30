@@ -107,13 +107,6 @@ export default function Curriculum2() {
           </div>
         </SectionCard>
                 
-          <FutureAeroCard
-            titolo="Futuro Professionale"
-            descrizione="Percorso orientato alla manutenzione aeronautica dei velivoli militari, con competenze su sistemi avionici, diagnostica tecnica, controlli strutturali e procedure di sicurezza."
-            img="https://www.aeronautica.difesa.it/wp-content/uploads/2023/09/124-TYPHOON-FLAG-29-08-2023.jpg"
-            link="https://www.aeronautica.difesa.it"
-          />
-
       
 
 
