@@ -21,7 +21,7 @@ export default function FutureAeroCard({
             <img
               src={img}
               alt={titolo}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              class="responsive-img"
             />
           </div>
         </a>
