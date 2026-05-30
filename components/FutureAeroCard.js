@@ -17,13 +17,12 @@ export default function FutureAeroCard({
           {titolo}
         </Typography>
         <a href={link} target="_blank" rel="noopener noreferrer">
-          <div className="w-full h-72 md:h-96 overflow-hidden">
+         
             <img
               src={img}
               alt={titolo}
               class="responsive-img"
             />
-          </div>
         </a>
         </>
       ) : (
